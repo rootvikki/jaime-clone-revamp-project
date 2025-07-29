@@ -94,6 +94,12 @@ export const CheckoutModal = ({ isOpen, onClose, product }: CheckoutModalProps) 
       }
 
       // Initiate M-Pesa payment
+      console.log('Calling M-Pesa function with:', {
+        phone: formData.customerPhone,
+        amount: totalAmount,
+        orderId: order.id
+      });
+
       const { data, error } = await supabase.functions.invoke('mpesa-stk-push', {
         body: {
           phone: formData.customerPhone,
@@ -102,7 +108,10 @@ export const CheckoutModal = ({ isOpen, onClose, product }: CheckoutModalProps) 
         }
       });
 
+      console.log('M-Pesa function response:', { data, error });
+
       if (error) {
+        console.error('Supabase function error:', error);
         throw error;
       }
 
