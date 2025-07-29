@@ -20,7 +20,10 @@ const passkey = Deno.env.get('MPESA_PASSKEY')!;
 async function getAccessToken(): Promise<string> {
   const auth = btoa(`${consumerKey}:${consumerSecret}`);
   
-  console.log('Getting access token with credentials:', { consumerKey, consumerSecret: consumerSecret ? '***hidden***' : 'missing' });
+  console.log('Getting access token...');
+  console.log('Consumer Key:', consumerKey ? `${consumerKey.substring(0, 8)}...` : 'MISSING');
+  console.log('Consumer Secret:', consumerSecret ? `${consumerSecret.substring(0, 4)}...` : 'MISSING');
+  console.log('Auth header:', `Basic ${auth.substring(0, 20)}...`);
   
   const response = await fetch(
     'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials',
@@ -33,13 +36,22 @@ async function getAccessToken(): Promise<string> {
     }
   );
   
+  console.log('Auth response status:', response.status);
+  console.log('Auth response headers:', Object.fromEntries(response.headers.entries()));
+  
   const data = await response.json();
   console.log('Access token response:', data);
+  
+  if (!response.ok) {
+    console.error('HTTP Error:', response.status, response.statusText);
+    throw new Error(`HTTP ${response.status}: ${JSON.stringify(data)}`);
+  }
   
   if (!data.access_token) {
     throw new Error(`Failed to get access token: ${JSON.stringify(data)}`);
   }
   
+  console.log('Access token obtained successfully');
   return data.access_token;
 }
 
