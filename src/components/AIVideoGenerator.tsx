@@ -127,10 +127,10 @@ export const AIVideoGenerator = () => {
         <CardHeader className="text-center">
           <CardTitle className="flex items-center justify-center gap-2 text-2xl">
             <Sparkles className="text-primary" />
-            AI Video Generator
+            AI Solar Panel Video Generator
           </CardTitle>
           <CardDescription>
-            Create stunning solar energy videos using AI. Describe what you want to see and let AI bring it to life!
+            Create professional solar panel videos using AI. Perfect for marketing your solar business, client presentations, and social media content.
           </CardDescription>
         </CardHeader>
         <CardContent className="space-y-6">
@@ -138,7 +138,7 @@ export const AIVideoGenerator = () => {
             <Label htmlFor="prompt">Video Description</Label>
             <Input
               id="prompt"
-              placeholder="e.g., Solar panels on a rooftop during sunset with energy flowing, time-lapse of solar installation, solar farm in a green field..."
+              placeholder="e.g., Solar panels being installed on a modern home rooftop, sunlight reflecting off solar panels at sunset, solar farm time-lapse, solar energy flowing visualization..."
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
               disabled={isGenerating}
@@ -195,31 +195,43 @@ export const AIVideoGenerator = () => {
           )}
 
           <div className="bg-muted/50 rounded-lg p-4">
-            <h3 className="font-semibold mb-2">Suggested Prompts:</h3>
+            <h3 className="font-semibold mb-2">Solar Panel Video Ideas:</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-2 text-sm">
               <button 
-                onClick={() => setPrompt("Solar panels on a modern house rooftop during golden hour sunset")}
+                onClick={() => setPrompt("Solar panels being installed on a modern house rooftop during golden hour")}
                 className="text-left p-2 rounded bg-background hover:bg-muted transition-colors"
               >
-                "Solar panels on a modern house rooftop during golden hour sunset"
+                "Solar panels being installed on a modern house rooftop during golden hour"
               </button>
               <button 
-                onClick={() => setPrompt("Time-lapse of solar panel installation by professional workers")}
+                onClick={() => setPrompt("Time-lapse of professional solar panel installation team working efficiently")}
                 className="text-left p-2 rounded bg-background hover:bg-muted transition-colors"
               >
-                "Time-lapse of solar panel installation by professional workers"
+                "Time-lapse of professional solar panel installation team working efficiently"
               </button>
               <button 
-                onClick={() => setPrompt("Large solar farm with rows of panels in green countryside")}
+                onClick={() => setPrompt("Large solar farm with rows of panels generating clean energy in African countryside")}
                 className="text-left p-2 rounded bg-background hover:bg-muted transition-colors"
               >
-                "Large solar farm with rows of panels in green countryside"
+                "Large solar farm with rows of panels generating clean energy in African countryside"
               </button>
               <button 
-                onClick={() => setPrompt("Solar panels reflecting sunlight with energy visualization effects")}
+                onClick={() => setPrompt("Solar panels on a house roof with energy flow visualization and battery charging animation")}
                 className="text-left p-2 rounded bg-background hover:bg-muted transition-colors"
               >
-                "Solar panels reflecting sunlight with energy visualization effects"
+                "Solar panels on a house roof with energy flow visualization and battery charging animation"
+              </button>
+              <button 
+                onClick={() => setPrompt("Aerial view of solar panels reflecting sunlight on commercial building rooftop")}
+                className="text-left p-2 rounded bg-background hover:bg-muted transition-colors"
+              >
+                "Aerial view of solar panels reflecting sunlight on commercial building rooftop"
+              </button>
+              <button 
+                onClick={() => setPrompt("Solar panel manufacturing process showing high-tech production line")}
+                className="text-left p-2 rounded bg-background hover:bg-muted transition-colors"
+              >
+                "Solar panel manufacturing process showing high-tech production line"
               </button>
             </div>
           </div>
