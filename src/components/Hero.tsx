@@ -50,7 +50,12 @@ const Hero = () => {
           </p>
           
           <div className="flex flex-col md:flex-row gap-4 justify-center mb-12">
-            <button className="bg-[#39aa0b] hover:bg-[#2d8009] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-xl">
+            <button 
+              onClick={() => {
+                document.getElementById('products')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+              className="bg-[#39aa0b] hover:bg-[#2d8009] text-white px-8 py-4 rounded-lg text-lg font-semibold transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2 shadow-xl"
+            >
               <span>Explore Products</span>
               <ArrowRight size={20} />
             </button>
