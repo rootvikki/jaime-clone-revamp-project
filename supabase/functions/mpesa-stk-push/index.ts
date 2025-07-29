@@ -20,17 +20,26 @@ const passkey = Deno.env.get('MPESA_PASSKEY')!;
 async function getAccessToken(): Promise<string> {
   const auth = btoa(`${consumerKey}:${consumerSecret}`);
   
+  console.log('Getting access token with credentials:', { consumerKey, consumerSecret: consumerSecret ? '***hidden***' : 'missing' });
+  
   const response = await fetch(
     'https://sandbox.safaricom.co.ke/oauth/v1/generate?grant_type=client_credentials',
     {
       method: 'GET',
       headers: {
         'Authorization': `Basic ${auth}`,
+        'Content-Type': 'application/json',
       },
     }
   );
   
   const data = await response.json();
+  console.log('Access token response:', data);
+  
+  if (!data.access_token) {
+    throw new Error(`Failed to get access token: ${JSON.stringify(data)}`);
+  }
+  
   return data.access_token;
 }
 
@@ -54,6 +63,16 @@ serve(async (req) => {
     const { phone, amount, orderId } = await req.json();
 
     console.log('Processing M-Pesa payment:', { phone, amount, orderId });
+    console.log('Environment check:', { 
+      consumerKey: consumerKey ? 'present' : 'missing',
+      consumerSecret: consumerSecret ? 'present' : 'missing',
+      shortcode: shortcode ? 'present' : 'missing',
+      passkey: passkey ? 'present' : 'missing'
+    });
+
+    if (!consumerKey || !consumerSecret || !shortcode || !passkey) {
+      throw new Error('Missing M-Pesa credentials. Please check your environment variables.');
+    }
 
     // Get access token
     const accessToken = await getAccessToken();
