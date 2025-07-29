@@ -14,15 +14,15 @@ const Hero = () => {
           playsInline
           className="absolute inset-0 w-full h-full object-cover"
         >
-          <source src="https://player.vimeo.com/external/434045526.sd.mp4?s=c27eecc69a27dbc4ff2b87d38afc35f1a9e7c02d&profile_id=139&oauth2_token_id=57447761" type="video/mp4" />
-          <source src="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" type="video/mp4" />
+          <source src="/videos/solar-panels-background.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
         
         {/* Fallback background image */}
         <div 
           className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `linear-gradient(rgba(0, 13, 46, 0.7), rgba(11, 121, 252, 0.5), rgba(57, 170, 11, 0.3)), url('https://images.unsplash.com/photo-1509391366360-2e959784a276?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80')`
+            backgroundImage: `linear-gradient(rgba(0, 13, 46, 0.7), rgba(11, 121, 252, 0.5), rgba(57, 170, 11, 0.3)), url('/lovable-uploads/18e39d79-f11e-43d5-9c74-b33913981055.png')`
           }}
         />
       </div>
